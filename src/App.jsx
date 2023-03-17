@@ -1,35 +1,37 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react'
+import { useLazyGetCoordinatesQuery, useLazyGetCityPollutionQuery } from './store/api/pollutionApi'
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const [city, setCity] = useState('');
+  const [getCoordinates, {data: cityCoordinates} ] = useLazyGetCoordinatesQuery()
+  const [getCityPollution, {data: cityAirPollution, isSuccess: isPollutionSuccess} ] = useLazyGetCityPollutionQuery()
 
+  useEffect(() => {
+    if(cityCoordinates){
+      const {lat, lon} = cityCoordinates[0]
+      getCityPollution({lat, lon})
+      setCity(cityCoordinates[0].name)
+    }
+  }, [cityCoordinates])
+
+  const {main: airQuality, components: chemicalComponents} = isPollutionSuccess ? cityAirPollution.list[0] : {}
+  console.log(airQuality, chemicalComponents)
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+  <main>
+    { isPollutionSuccess &&
+      <section>
+       <h2>{city}</h2>
+       <h3>{airQuality.aqi}</h3>
+       {Object.keys(chemicalComponents).map(component => (
+          <p>{component} : {chemicalComponents[component]}</p>
+       ))}
+     </section>
+    }
+    <button type='button' onClick={() => getCoordinates('Bogota')}>getCoordinates</button>
+  </main>
+  
   )
 }
 
-export default App
+

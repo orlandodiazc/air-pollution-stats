@@ -1,37 +1,57 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
-import { useLazyGetCoordinatesQuery, useLazyGetCityPollutionQuery } from './store/api/pollutionApi'
+import { Link } from 'react-router-dom'
+import { useGetCityPollutionQuery, useLazyGetCoordinatesQuery } from './store/api/pollutionApi'
+import { useLocation } from 'react-router-dom'
 
 export default function App() {
-  const [city, setCity] = useState('');
-  const [getCoordinates, {data: cityCoordinates} ] = useLazyGetCoordinatesQuery()
-  const [getCityPollution, {data: cityAirPollution, isSuccess: isPollutionSuccess} ] = useLazyGetCityPollutionQuery()
-
-  useEffect(() => {
-    if(cityCoordinates){
-      const {lat, lon} = cityCoordinates[0]
-      getCityPollution({lat, lon})
-      setCity(cityCoordinates[0].name)
-    }
-  }, [cityCoordinates])
-
-  const {main: airQuality, components: chemicalComponents} = isPollutionSuccess ? cityAirPollution.list[0] : {}
-  console.log(airQuality, chemicalComponents)
-  return (
-  <main>
-    { isPollutionSuccess &&
-      <section>
-       <h2>{city}</h2>
-       <h3>{airQuality.aqi}</h3>
-       {Object.keys(chemicalComponents).map(component => (
-          <p>{component} : {chemicalComponents[component]}</p>
-       ))}
-     </section>
-    }
-    <button type='button' onClick={() => getCoordinates('Bogota')}>getCoordinates</button>
-  </main>
-  
-  )
+	const [getCoordinates, { data: coordinates, isSuccess }] = useLazyGetCoordinatesQuery()
+	console.log(coordinates)
+	const POPULAR_CITIES = isSuccess
+		? [{ name: coordinates[0].name, lat: coordinates[0].lat, lon: coordinates[0].lon }]
+		: [
+				{ name: 'Bogota', lat: 4.624335, lon: -74.063644 },
+				{ name: 'New York', lat: 40.73061, lon: -73.935242 },
+		  ]
+	console.log(POPULAR_CITIES)
+	return (
+		<>
+			<button type="button" onClick={() => getCoordinates('Paris')}>
+				Search Paris
+			</button>
+			{POPULAR_CITIES.map((cityLocation) => (
+				<City key={cityLocation.name} cityLocation={cityLocation} />
+			))}
+		</>
+	)
 }
 
+function City({ cityLocation }) {
+	const { name, lat, lon } = cityLocation
+	const { data: cityAirPollution, isSuccess: isPollutionSuccess } = useGetCityPollutionQuery({
+		lat,
+		lon,
+	})
+	const { main: airQuality } = isPollutionSuccess ? cityAirPollution.list[0] : {}
+	if (isPollutionSuccess) {
+		return (
+			<li>
+				<Link state={{ cityAirPollution, cityLocation }} to={`details/${name}`}>
+					{name} {airQuality.aqi}
+				</Link>
+			</li>
+		)
+	}
+	return <p>Loading</p>
+}
 
+export function DetailsComp({ cityAirPollution, cityLocation }) {
+	// const { data: cityAirPollution, isSuccess: isPollutionSuccess } = useGetCityPollutionQuery({
+	// 	lat,
+	// 	lon,
+	// })
+	const { state } = useLocation()
+	console.log(state)
+	// const { main: airQuality, components: chemichals } = cityAirPollution.list[0]
+	return <p>DETAILS</p>
+}
+
+export function Search() {}

@@ -1,20 +1,31 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import { Provider } from 'react-redux'
 import { store } from './store/configureStore'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Root from './routes/Root'
-import Details from './routes/Details'
+import Root from './pages/Root'
+import Details from './pages/Details'
+import Search from './pages/Search'
+import Home from './pages/Home'
 
 const router = createBrowserRouter([
 	{
 		path: '/',
 		element: <Root />,
-	},
-	{
-		path: 'details/:city',
-		element: <Details />,
+		children: [
+			{
+				path: '/',
+				element: <Home />,
+			},
+			{
+				path: 'details/:city',
+				element: <Details />,
+			},
+			{
+				path: 'search',
+				element: <Search />,
+			},
+		],
 	},
 ])
 

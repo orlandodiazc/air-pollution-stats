@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 
-const API_KEY = 'f18c5efec7fe93374ccee2f15f9bc2a3'
+const API_KEY = ''
 
 export const pollutionApi = createApi({
   reducerPath: 'api',

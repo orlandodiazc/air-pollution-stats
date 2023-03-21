@@ -28,10 +28,10 @@ const CHEMS = {
 
 export const pollutionApi = createApi({
 	reducerPath: 'api',
-	baseQuery: fetchBaseQuery({ baseUrl: 'http://api.openweathermap.org' }),
+	baseQuery: fetchBaseQuery({ baseUrl: '/.netlify/functions' }),
 	endpoints: (builder) => ({
 		getCoordinates: builder.query({
-			query: (city) => `/geo/1.0/direct?q=${city}&limit=5&appid=${import.meta.env.VITE_API_KEY}`,
+			query: (city) => `/coordinates?city=${city}`,
 			transformResponse: (res) => {
 				const countries = []
 				return res.filter((location) => {
@@ -45,8 +45,7 @@ export const pollutionApi = createApi({
 			},
 		}),
 		getCityPollution: builder.query({
-			query: ({ lat, lon }) =>
-				`/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}`,
+			query: ({ lat, lon }) => `/cityAirPollution?lat=${lat}&lon=${lat}`,
 			transformResponse: (res) => {
 				delete res.list[0].components['pm2_5']
 				delete res.list[0].components['pm10']
@@ -64,5 +63,8 @@ export const pollutionApi = createApi({
 		}),
 	}),
 })
+
+// /geo/1.0/direct?q=${city}&limit=5&appid=${import.meta.env.VITE_API_KEY}
+// /data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${import.meta.env.VITE_API_KEY}
 
 export const { useLazyGetCoordinatesQuery, useGetCityPollutionQuery } = pollutionApi

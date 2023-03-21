@@ -23,6 +23,7 @@ specifiers:
   form-data: ^4.0.0
   netlify-cli: ^13.2.0
   postcss: ^8.4.21
+  proxy-from-env: ^1.1.0
   react: ^18.2.0
   react-dom: ^18.2.0
   react-icons: ^4.8.0
@@ -37,6 +38,7 @@ dependencies:
   '@reduxjs/toolkit': 1.9.3_k4ae6lp43ej6mezo3ztvx6pykq
   follow-redirects: 1.15.2
   form-data: 4.0.0
+  proxy-from-env: 1.1.0
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.8.0_react@18.2.0
@@ -9151,7 +9153,6 @@ packages:
 
   /proxy-from-env/1.1.0:
     resolution: {integrity: sha512-D+zkORCbA9f1tdWRK0RaCR3GPv50cMxcrz4X8k5LTSUD1Dkw47mKJEZQNunItRTkWwgtaUSo1RVFRIG9ZXiFYg==}
-    dev: true
 
   /ps-list/8.1.1:
     resolution: {integrity: sha512-OPS9kEJYVmiO48u/B9qneqhkMvgCxT+Tm28VCEJpheTpl8cJ0ffZRRNgS5mrQRTrX5yRTpaJ+hRDeefXYmmorQ==}

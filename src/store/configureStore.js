@@ -1,9 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import { pollutionApi } from './api/pollutionApi'
+import { configureStore } from '@reduxjs/toolkit';
+import { pollutionApi } from './api/pollutionApi';
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    [pollutionApi.reducerPath]: pollutionApi.reducer
+    [pollutionApi.reducerPath]: pollutionApi.reducer,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pollutionApi.middleware)
-})
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(pollutionApi.middleware),
+});
+
+export default store;

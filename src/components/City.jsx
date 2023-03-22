@@ -10,6 +10,7 @@ export default function City({ cityLocation }) {
 	})
 	const { main: airQuality } = isPollutionSuccess ? cityAirPollution.list[0] : {}
 	if (isPollutionSuccess) {
+		console.log(cityAirPollution)
 		return (
 			<li className="border border-opacity-40 border-gray-200">
 				<div className="px-3 py-1">

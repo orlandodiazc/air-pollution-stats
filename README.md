@@ -27,7 +27,7 @@ After you're finished please remove all the comments and instructions!
 
 **Air Pollution Stats** is a SPA built with ReactJS/Redux Toolkit, it allows the user to search air pollution data for specific locations.
 
-[Live Site]()
+[Live Site](https://gleeful-licorice-f5bb44.netlify.app/)
 
 ## Built With <a name="built-with"></a>
 
@@ -42,7 +42,6 @@ This project was created using:
     <li>Redux</li>
     <li>Redux Toolkit</li>
   </ul>
-
 
 <!-- Features -->
 

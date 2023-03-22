@@ -16,7 +16,7 @@ jobs:
           node-version: '18.x'
       - name: Setup ESLint
         run: |
-          npm install eslint-plugin-react@latest eslint-config-standard@latest eslint@^8.0.1 eslint-plugin-import@^2.25.2 eslint-plugin-n@^15.0.0 eslint-plugin-promise@^6.0.0
+          npm install eslint@^7.32.0 eslint-config-airbnb@^19.0.4 eslint-plugin-import@^2.25.3 eslint-plugin-jsx-a11y@^6.5.1 eslint-plugin-react@^7.28.0 eslint-plugin-react-hooks@^4.3.0
           [ -f .eslintrc.json ] || .eslintrc.json
           [ -f .babelrc ] || .babelrc
       - name: ESLint Report

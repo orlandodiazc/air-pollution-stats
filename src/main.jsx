@@ -8,6 +8,7 @@ import Root from './pages/Root';
 import Details from './pages/Details';
 import Search from './pages/Search';
 import Home from './pages/Home';
+import Error from './pages/Error';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
         element: <Search />,
       },
     ],
+    errorElement: <Error />,
   },
 ]);
 

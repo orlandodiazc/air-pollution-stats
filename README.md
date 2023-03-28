@@ -41,6 +41,7 @@ This project was created using:
     <li>ReactJS</li>
     <li>Redux</li>
     <li>Redux Toolkit</li>
+    <li>TailwindCSS</li>
   </ul>
 
 <!-- Features -->
@@ -51,15 +52,15 @@ To get a local copy up and running, follow these steps.
 
 1. Clone the repository into your machine (Or download the .zip file and extract).
 2. Open the project's folder.
-3. Run npm install
-4. Run npm start
+3. Run pnpm install
+4. Run npm run dev
 
 ## Authors <a name="authors"></a>
 
 👤 **Orlando Diaz**
 
 - GitHub: [@orlandodiazc](https://github.com/orlandodiazc)
-- LinkedIn: [LinkedIn](www.linkedin.com/in/orlando-diaz-conde)
+- LinkedIn: [Orlando Diaz Conde](www.linkedin.com/in/orlando-diaz-conde)
 
 <!-- FUTURE FEATURES -->
 

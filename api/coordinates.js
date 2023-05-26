@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 export default async function coordinates(request, response) {
   const { city } = request.query;

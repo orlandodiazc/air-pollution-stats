@@ -17,18 +17,26 @@ const CHEMS = {
     spamodel: '/Nitrogen-dioxide-3D.png',
     model: '/Nitrogen-dioxide-2D-dimensions-vector.svg',
   },
-  o3: { name: 'Ozone', spamodel: '/Ozone-3D.png', model: '/Ozone-1,3-dipole.png' },
+  o3: {
+    name: 'Ozone',
+    spamodel: '/Ozone-3D.png',
+    model: '/Ozone-1,3-dipole.png',
+  },
   so2: {
     name: 'Sulphur Dioxide',
     spamodel: '/Sulfur-dioxide-3D.png',
     model: '/Sulfur-dioxide-2D.svg',
   },
-  nh3: { name: 'Ammonia', spamodel: '/Ammonia-3D.png', model: '/Ammonia-2D.svg' },
+  nh3: {
+    name: 'Ammonia',
+    spamodel: '/Ammonia-3D.png',
+    model: '/Ammonia-2D.svg',
+  },
 };
 
 export const pollutionApi = createApi({
   reducerPath: 'api',
-  baseQuery: fetchBaseQuery({ baseUrl: '/.netlify/functions' }),
+  baseQuery: fetchBaseQuery({ baseUrl: '/api' }),
   endpoints: (builder) => ({
     getCoordinates: builder.query({
       query: (city) => `/coordinates?city=${city}`,

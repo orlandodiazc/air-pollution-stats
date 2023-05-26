@@ -1,5 +1,5 @@
-import PropTypes from 'prop-types';
-import City from './City';
+import PropTypes from "prop-types";
+import City from "./City";
 
 export default function Cities({ cityList }) {
   return (

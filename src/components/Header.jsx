@@ -1,15 +1,15 @@
-import { createSearchParams, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { MdChevronLeft, MdSettings, MdHome } from 'react-icons/md';
+import { createSearchParams, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { MdChevronLeft, MdSettings, MdHome } from "react-icons/md";
 
 export default function Header() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState("");
   const navigate = useNavigate();
   function handleSubmit(ev) {
     ev.preventDefault();
     if (value) {
       navigate({
-        pathname: '/search',
+        pathname: "/search",
         search: createSearchParams({
           q: value,
         }).toString(),
@@ -26,7 +26,11 @@ export default function Header() {
         >
           <MdChevronLeft size={30} />
         </button>
-        <form role="search" className="w-full" onSubmit={(ev) => handleSubmit(ev)}>
+        <form
+          role="search"
+          className="w-full"
+          onSubmit={(ev) => handleSubmit(ev)}
+        >
           <div className="p-2">
             <input
               className="border border-gray-400 text-black px-2 py-2 outline-lime-700 rounded-md w-full"
